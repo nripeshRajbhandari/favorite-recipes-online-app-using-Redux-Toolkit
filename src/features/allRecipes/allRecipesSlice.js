@@ -1,21 +1,51 @@
 import allRecipesData from '../../data.js'
 import { createSlice } from '@reduxjs/toolkit';
+import { addRecipe, removeRecipe } from '../favoriteRecipes/favoriteRecipesSlice.js';
+
 
 export const allRecipesSlice = createSlice({
   name: 'allRecipes',
   initialState: [],
   reducers: {
     loadData: () => allRecipesData,
-    addToRecipe: (state, action) => {
+  },
+  
+  // Handling two different actions for the same listener in different slices using Redux Toolkit   
+  extraReducers: (builder)=> {
+    builder
+    .addCase(addRecipe, (state, action) => {
       return state.filter(recipe => recipe.id !== action.payload.id);
-    },
-    removeFromRecipe: (state, action) => {
+     })
+    .addCase(removeRecipe, (state,action) =>{
       state.push(action.payload);
-    }
+    })
   }
+  // extraReducers:{
+  //   ['favoriteRecipes/addRecipe'] : (state, action) => {
+  //     return state.filter(recipe => recipe.id !==action.payload.id);
+  //   },
+  //   ['favoriteRecipes/removeRecipe'] : (state, action) => {
+  //     state.push(action.payload);
+  //   }
+  // }
 });
 
-export const { loadData, addToRecipe, removeFromRecipe } = allRecipesSlice.actions;
+// export const allRecipesSlice = createSlice({
+//   name: 'allRecipes',
+//   initialState: [],
+//   reducers: {
+//     loadData: () => allRecipesData,
+//     addToRecipe: (state, action) => {
+//       return state.filter(recipe => recipe.id !== action.payload.id);
+//     },
+//     removeFromRecipe: (state, action) => {
+//       state.push(action.payload);
+//     }
+//   }
+// });
+
+// export const { loadData, addToRecipe, removeFromRecipe } = allRecipesSlice.actions;
+export const { loadData } = allRecipesSlice.actions;
 
 export default allRecipesSlice.reducer;
 

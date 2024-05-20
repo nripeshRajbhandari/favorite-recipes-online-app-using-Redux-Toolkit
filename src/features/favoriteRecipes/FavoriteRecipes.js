@@ -1,9 +1,8 @@
 import React from 'react';
 import FavoriteButton from "../../components/FavoriteButton";
 import Recipe from "../../components/Recipe";
-// Import removeRecipe from favoriteRecipesSlice.js
 import { removeRecipe } from './favoriteRecipesSlice.js';
-import { removeFromRecipe } from '../allRecipes/allRecipesSlice';
+// import { removeFromRecipe } from '../allRecipes/allRecipesSlice';
 const unfavoriteIconUrl = 'https://static-assets.codecademy.com/Courses/Learn-Redux/Recipes-App/icons/unfavorite.svg'
 
 
@@ -17,7 +16,7 @@ export const FavoriteRecipes = (props) =>{
   const onRemoveRecipeHandler = (recipe) => {
     // Dispatch a removeRecipe() action.
     dispatch(removeRecipe(recipe));
-    dispatch(removeFromRecipe(recipe));
+    // dispatch(removeFromRecipe(recipe));
   };
 
   // Map the recipe objects in favoriteRecipes to render <Recipe /> components.
