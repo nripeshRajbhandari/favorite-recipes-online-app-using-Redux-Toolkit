@@ -1,5 +1,5 @@
 import { addRecipe } from '../favoriteRecipes/favoriteRecipesSlice.js';
-import { loadData } from './allRecipesSlice';
+import { loadData, addToRecipe, removeFromRecipe } from './allRecipesSlice';
 
 import React, { useEffect } from 'react';
 import FavoriteButton from "../../components/FavoriteButton";
@@ -18,6 +18,7 @@ export const AllRecipes = (props) => {
   useEffect(onFirstRender, [])
   
   const onAddRecipeHandler = (recipe) => {
+    dispatch(addToRecipe(recipe));
     dispatch(addRecipe(recipe));
   };
 

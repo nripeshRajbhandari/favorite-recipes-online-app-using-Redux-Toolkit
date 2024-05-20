@@ -1,5 +1,28 @@
 import allRecipesData from '../../data.js'
+import { createSlice } from '@reduxjs/toolkit';
 
+export const allRecipesSlice = createSlice({
+  name: 'allRecipes',
+  initialState: [],
+  reducers: {
+    loadData: () => allRecipesData,
+    addToRecipe: (state, action) => {
+      return state.filter(recipe => recipe.id !== action.payload.id);
+    },
+    removeFromRecipe: (state, action) => {
+      state.push(action.payload);
+    }
+  }
+});
+
+export const { loadData, addToRecipe, removeFromRecipe } = allRecipesSlice.actions;
+
+export default allRecipesSlice.reducer;
+
+
+
+//following code block has been replaced by above code blocks using redux toolkit  
+/*
 //initialize action creator
 export const loadData = () => {
   return {
@@ -22,3 +45,4 @@ export const allRecipesReducer = (allRecipes = initialState, action) => {
       return allRecipes;
   }
 }
+*/
