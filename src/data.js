@@ -1,6 +1,6 @@
 const allRecipesData = [
-    { id: 0, name: 'Biscuits', img: '/src/img/biscuits.jpg'},
-    { id: 1, name: 'Bulgogi', img: 'img/bulgogi.jpg'},
+    { id: 0, name: 'Biscuits', img: '../img/biscuits.jpg'},
+    { id: 1, name: 'Bulgogi', img: '../img/bulgogi.jpg'},
     { id: 2, name: 'Calamari', img: '../img/calamari.jpg'},
     { id: 3, name: 'Ceviche', img: '../img/ceviche.jpg'},
     { id: 4, name: 'Cheeseburger', img: '../img/cheeseburger.jpg'},
