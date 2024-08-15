@@ -1,4 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { selectSearchTerm } from '../searchTerm/searchTermSlice';
+
 //initialise state slice and define slice reducer
 
 export const favoriteRecipesSlice = createSlice ({
@@ -13,8 +15,21 @@ export const favoriteRecipesSlice = createSlice ({
     }
   }
 
-})
+});
 
+//export Selectors
+export const selectFavoriteRecipes = (state) => state.favoriteRecipes;
+
+export const selectFilteredFavoriteRecipes = (state) => {
+
+  const favoriteRecipes = selectFavoriteRecipes(state);
+  const searchTerm = selectSearchTerm(state);
+
+  return favoriteRecipes.filter(recipe => recipe.name.toLowerCase().includes(searchTerm.toLowerCase()))
+}; 
+
+
+//export slice reducer and action creators
 
 export const { addRecipe, removeRecipe } = favoriteRecipesSlice.actions;
 export default favoriteRecipesSlice.reducer; 

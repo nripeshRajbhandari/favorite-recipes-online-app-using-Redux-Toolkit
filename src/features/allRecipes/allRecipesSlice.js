@@ -1,7 +1,7 @@
 import allRecipesData from '../../data.js'
 import { createSlice } from '@reduxjs/toolkit';
 import { addRecipe, removeRecipe } from '../favoriteRecipes/favoriteRecipesSlice.js';
-
+import { selectSearchTerm } from '../searchTerm/searchTermSlice.js';
 
 export const allRecipesSlice = createSlice({
   name: 'allRecipes',
@@ -30,6 +30,24 @@ export const allRecipesSlice = createSlice({
   // }
 });
 
+
+//export Selectors
+
+export const selectAllRecipes = (state) => state.allRecipes;
+
+export const selectFilteredAllRecipes = (state) => {
+  const allRecipes = selectAllRecipes(state);
+  const searchTerm = selectSearchTerm(state);
+
+  return allRecipes.filter(recipe => recipe.name.toLowerCase().includes(searchTerm.toLowerCase()));
+}
+
+
+//export slice reducer and action creators
+export const { loadData } = allRecipesSlice.actions;
+
+export default allRecipesSlice.reducer;
+
 // export const allRecipesSlice = createSlice({
 //   name: 'allRecipes',
 //   initialState: [],
@@ -45,9 +63,7 @@ export const allRecipesSlice = createSlice({
 // });
 
 // export const { loadData, addToRecipe, removeFromRecipe } = allRecipesSlice.actions;
-export const { loadData } = allRecipesSlice.actions;
 
-export default allRecipesSlice.reducer;
 
 
 

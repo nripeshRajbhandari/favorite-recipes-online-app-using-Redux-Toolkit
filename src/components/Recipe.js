@@ -1,5 +1,4 @@
 import React from "react";
-import test from '../img/biscuits.jpg'
 
 export default function Recipe({ recipe, children }) {
   return (
